@@ -1,4 +1,5 @@
 import jwt
+from jwt import InvalidTokenError
 from datetime import datetime  
 from flask import current_app
 
@@ -16,4 +17,6 @@ def decode_token(token):
         return payload['sub']
 
     except jwt.ExpiredSignatureError:
+        return None
+    except InvalidTokenError:
         return None
