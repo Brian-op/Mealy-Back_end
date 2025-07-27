@@ -1,7 +1,8 @@
 from flask import Blueprint, request
-from models.user import User, db
-from utils.jwt_utils import encoding_token
-from utils.validators import validate_signup
+from ..models.user import User
+from .. import db
+from ..utils.jwt_utils import encoding_token
+from ..utils.validators import validate_signup
 
 auth_bp = Blueprint('auth', __name__)
 
