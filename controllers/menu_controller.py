@@ -1,6 +1,6 @@
 from flask import Blueprint, request, jsonify
-from models.menu import Menu
-from models import db
+from ..models.menu import Menu
+from .. import db
 
 menu_bp = Blueprint('menus', __name__, url_prefix='/menus')
 

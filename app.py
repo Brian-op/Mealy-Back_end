@@ -1,14 +1,14 @@
 from flask import Flask
 from flask_migrate import Migrate
 from flask_cors import CORS
-from models import db
-from config import Config
+from . import db
+from .config import Config
 
 
-from controllers.auth_controller import auth_bp
-from controllers.meal_controller import meal_bp
-from controllers.menu_controller import menu_bp
-from controllers.order_controller import order_bp
+from .controllers.auth_controller import auth_bp
+from .controllers.meal_controller import meal_bp
+from .controllers.menu_controller import menu_bp
+from .controllers.order_controller import order_bp
 
 def create_app():
     app = Flask(__name__)

@@ -1,5 +1,5 @@
 from .. import db
-import datetime
+from datetime import datetime
 
 class Order(db.Model):
     __tablename__ = "orders"

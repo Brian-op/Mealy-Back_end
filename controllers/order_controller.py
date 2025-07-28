@@ -1,6 +1,6 @@
 from flask import Blueprint, request, jsonify
-from models.order import Order
-from models import db
+from ..models.order import Order
+from .. import db
 
 order_bp = Blueprint('orders', __name__, url_prefix='/orders')
 
