@@ -8,6 +8,10 @@ class User (db.Model):
     username = db.Column(db.String(40), unique=True, nullable=False)
     email = db.Column(db.String, unique=True, nullable=False)
     password_hash = db.Column(db.String, nullable=False)
+    role = db.Column(db.String(20), default='customer')  # or 'admin'
+
+    def is_admin(self):
+        return self.role == 'admin'
 
     orders = db.relationship('Order', backref='user', lazy=True)
 

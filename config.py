@@ -1,5 +1,6 @@
-class Config:
-    SECRET_KEY = 'a3b72c4f39d44b89f0e3c2d6d5e24576e3fddc1f03a8396cda83901af4c8db25'
+import os
 
-    SQLALCHEMY_DATABASE_URI = "sqlite:///mealy.db"
+class Config:
+    SECRET_KEY = os.environ.get("SECRET_KEY", "fallback_secret")
+    SQLALCHEMY_DATABASE_URI = os.environ.get("DATABASE_URL")
     SQLALCHEMY_TRACK_MODIFICATIONS = False
