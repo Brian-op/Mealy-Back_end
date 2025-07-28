@@ -1,7 +1,10 @@
-flask==2.2.2
-psycopg2==2.9.5
-flask-sqlalchemy==3.0.2
-flask-bcrypt==1.0.1
+Flask==2.2.2
+gunicorn
+psycopg2-binary==2.9.5
+Flask-SQLAlchemy==3.0.2
+Flask-Bcrypt==1.0.1
+Flask-Migrate
+Flask-Cors
 marshmallow==3.19.0
-pyjwt==2.6.0
-werkzeug==2.2.3
+PyJWT==2.6.0
+Werkzeug==2.2.3
