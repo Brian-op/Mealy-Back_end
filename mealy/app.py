@@ -1,4 +1,4 @@
-from flask import Flask
+from flask import Flask, jsonify
 from flask_migrate import Migrate
 from flask_cors import CORS
 from mealy import db
@@ -23,6 +23,10 @@ def create_app():
     app.register_blueprint(meal_bp, url_prefix='/meals')
     app.register_blueprint(menu_bp, url_prefix='/menus')
     app.register_blueprint(order_bp, url_prefix='/orders')
+
+    @app.route("/")
+    def home():
+        return jsonify({"message": "Mealy API is Live "}), 200
 
     return app
 
