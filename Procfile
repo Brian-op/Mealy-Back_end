@@ -1,1 +1,1 @@
-web: gunicorn 'mealy.app:create_app()'
+web: gunicorn mealy.app:app
