@@ -1,17 +1,14 @@
 from mealy import db
-from datetime import date
 
 class Menu(db.Model):
-    __tablename__ = "menus"
+    __tablename__ = 'menus'
 
     id = db.Column(db.Integer, primary_key=True)
-    date = db.Column(db.Date, default=date.today, unique=True, nullable=False)
+    name = db.Column(db.String(100), nullable=False)
+    date = db.Column(db.Date, nullable=False)
 
-    meals = db.relationship('MenuMeal', backref='menu', lazy=True)
 
-    def to_dict(self):
-        return {
-            "id": self.id,
-            "date": str(self.date),
-            "meals": [menu_meal.meal.to_dict() for menu_meal in self.meals]
-        }
+    meal_links = db.relationship('MenuMeal', back_populates='menu', cascade='all, delete-orphan')
+
+    def __repr__(self):
+        return f"<Menu {self.name}>"

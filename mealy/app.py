@@ -19,10 +19,10 @@ def create_app():
     Migrate(app, db)
     CORS(app)
 
-    app.register_blueprint(auth_bp, url_prefix='/auth')
-    app.register_blueprint(meal_bp, url_prefix='/meals')
-    app.register_blueprint(menu_bp, url_prefix='/menus')
-    app.register_blueprint(order_bp, url_prefix='/orders')
+    app.register_blueprint(auth_bp, url_prefix='/api')
+    app.register_blueprint(meal_bp, url_prefix='/api/meals')
+    app.register_blueprint(menu_bp, url_prefix='/api/menus')
+    app.register_blueprint(order_bp, url_prefix='/api/orders')
 
     @app.route("/")
     def home():

@@ -2,17 +2,18 @@ from mealy import db
 from datetime import datetime
 
 class Order(db.Model):
-    __tablename__ = "orders"
+    __tablename__ = 'orders'
 
     id = db.Column(db.Integer, primary_key=True)
     user_id = db.Column(db.Integer, db.ForeignKey('users.id'), nullable=False)
-    meal_id = db.Column(db.Integer, db.ForeignKey('meals.id'), nullable=False)
-    timestamp = db.Column(db.DateTime, default=datetime.utcnow)
+    menu_meal_id = db.Column(db.Integer, db.ForeignKey('menu_meals.id'), nullable=False)
+    quantity = db.Column(db.Integer, default=1, nullable=False)
+    status = db.Column(db.String(50), default='pending', nullable=False)
+    created_at = db.Column(db.DateTime, default=datetime.utcnow)
 
-    def to_dict(self):
-        return {
-            "id": self.id,
-            "user": self.user.username if self.user else None,
-            "meal": self.meal.to_dict() if self.meal else None,
-            "timestamp": self.timestamp.isoformat()
-        }
+    # Relationships
+    user = db.relationship('User', back_populates='orders')
+    menu_meal = db.relationship('MenuMeal', back_populates='orders')
+
+    def __repr__(self):
+        return f"<Order User={self.user_id} Meal={self.menu_meal_id} Qty={self.quantity}>"

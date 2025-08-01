@@ -1,20 +1,15 @@
 from mealy import db
 
 class Meal(db.Model):
-    __tablename__ = "meals"
+    __tablename__ = 'meals'
 
     id = db.Column(db.Integer, primary_key=True)
     name = db.Column(db.String(100), nullable=False)
-    description = db.Column(db.String(200))
+    description = db.Column(db.String(255), nullable=True)
     price = db.Column(db.Float, nullable=False)
 
-    menus = db.relationship('MenuMeal', backref='meal', lazy=True)
-    orders = db.relationship('Order', backref='meal', lazy=True)
 
-    def to_dict(self):
-        return {
-            "id": self.id,
-            "name": self.name,
-            "description": self.description,
-            "price": self.price
-        }
+    menu_links = db.relationship('MenuMeal', back_populates='meal', cascade='all, delete-orphan')
+
+    def __repr__(self):
+        return f"<Meal {self.name}>"
